@@ -1,0 +1,28 @@
+StereoStructure
+Model
+Open
+Create from video
+Settings
+About
+Save as...
+Logs
+Language
+Russian
+English
+Author
+How to use
+Correspondences
+Edit mode
+Accuracy
+Low
+Medium
+High
+Advanced...
+Grid Width
+Grid Length
+Grid Thickness
+Default model color on first load
+Maximum model width
+Correspondences circle width
+Epsilon
+Gauss-Blur sigma value

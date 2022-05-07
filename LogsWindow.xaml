@@ -1,0 +1,13 @@
+﻿<Window x:Class="StereoStructure.LogsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StereoStructure"
+        mc:Ignorable="d"
+        Title="Logs" Height="299.644" Width="419.313" ResizeMode="NoResize" IsTabStop="True" WindowStartupLocation="Manual" Icon="icons/icon.png" Closed="Window_Closed">
+    <Grid Margin="0,0,-0.2,1.4">
+        <TextBox x:Name="logs" HorizontalAlignment="Left" Height="254" Margin="6,0,0,0" TextWrapping="Wrap" Width="393" VerticalScrollBarVisibility="Visible" VerticalAlignment="Top" AcceptsReturn="True" IsReadOnly="True"/>
+
+    </Grid>
+</Window>

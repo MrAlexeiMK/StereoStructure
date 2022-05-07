@@ -1,0 +1,586 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {
+      "Accord/3.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/Accord.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.dll": {}
+        },
+        "build": {
+          "build/Accord.targets": {}
+        }
+      },
+      "Accord.Video/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0"
+        },
+        "compile": {
+          "lib/net462/Accord.Video.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.Video.dll": {}
+        }
+      },
+      "Accord.Video.FFMPEG/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0",
+          "Accord.Video": "3.8.0"
+        },
+        "compile": {
+          "lib/net462/Accord.Video.FFMPEG.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.Video.FFMPEG.dll": {}
+        },
+        "build": {
+          "build/Accord.Video.FFMPEG.targets": {}
+        }
+      },
+      "FontAwesome.WPF/4.7.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        }
+      },
+      "HelixToolkit/2.20.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.1/HelixToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/HelixToolkit.dll": {}
+        }
+      },
+      "HelixToolkit.Wpf/2.20.2": {
+        "type": "package",
+        "dependencies": {
+          "HelixToolkit": "[2.20.2]"
+        },
+        "compile": {
+          "lib/net45/HelixToolkit.Wpf.dll": {}
+        },
+        "runtime": {
+          "lib/net45/HelixToolkit.Wpf.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win": {
+      "Accord/3.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/Accord.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.dll": {}
+        },
+        "build": {
+          "build/Accord.targets": {}
+        }
+      },
+      "Accord.Video/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0"
+        },
+        "compile": {
+          "lib/net462/Accord.Video.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.Video.dll": {}
+        }
+      },
+      "Accord.Video.FFMPEG/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0",
+          "Accord.Video": "3.8.0"
+        },
+        "compile": {
+          "lib/net462/Accord.Video.FFMPEG.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.Video.FFMPEG.dll": {}
+        },
+        "build": {
+          "build/Accord.Video.FFMPEG.targets": {}
+        }
+      },
+      "FontAwesome.WPF/4.7.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        }
+      },
+      "HelixToolkit/2.20.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.1/HelixToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/HelixToolkit.dll": {}
+        }
+      },
+      "HelixToolkit.Wpf/2.20.2": {
+        "type": "package",
+        "dependencies": {
+          "HelixToolkit": "[2.20.2]"
+        },
+        "compile": {
+          "lib/net45/HelixToolkit.Wpf.dll": {}
+        },
+        "runtime": {
+          "lib/net45/HelixToolkit.Wpf.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win-x64": {
+      "Accord/3.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/Accord.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.dll": {}
+        },
+        "build": {
+          "build/Accord.targets": {}
+        }
+      },
+      "Accord.Video/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0"
+        },
+        "compile": {
+          "lib/net462/Accord.Video.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.Video.dll": {}
+        }
+      },
+      "Accord.Video.FFMPEG/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0",
+          "Accord.Video": "3.8.0"
+        },
+        "compile": {
+          "lib/net462/Accord.Video.FFMPEG.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.Video.FFMPEG.dll": {}
+        },
+        "build": {
+          "build/Accord.Video.FFMPEG.targets": {}
+        }
+      },
+      "FontAwesome.WPF/4.7.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        }
+      },
+      "HelixToolkit/2.20.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.1/HelixToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/HelixToolkit.dll": {}
+        }
+      },
+      "HelixToolkit.Wpf/2.20.2": {
+        "type": "package",
+        "dependencies": {
+          "HelixToolkit": "[2.20.2]"
+        },
+        "compile": {
+          "lib/net45/HelixToolkit.Wpf.dll": {}
+        },
+        "runtime": {
+          "lib/net45/HelixToolkit.Wpf.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.7.2/win-x86": {
+      "Accord/3.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/Accord.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.dll": {}
+        },
+        "build": {
+          "build/Accord.targets": {}
+        }
+      },
+      "Accord.Video/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0"
+        },
+        "compile": {
+          "lib/net462/Accord.Video.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.Video.dll": {}
+        }
+      },
+      "Accord.Video.FFMPEG/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Accord": "3.8.0",
+          "Accord.Video": "3.8.0"
+        },
+        "compile": {
+          "lib/net462/Accord.Video.FFMPEG.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Accord.Video.FFMPEG.dll": {}
+        },
+        "build": {
+          "build/Accord.Video.FFMPEG.targets": {}
+        }
+      },
+      "FontAwesome.WPF/4.7.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        }
+      },
+      "HelixToolkit/2.20.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.1/HelixToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/HelixToolkit.dll": {}
+        }
+      },
+      "HelixToolkit.Wpf/2.20.2": {
+        "type": "package",
+        "dependencies": {
+          "HelixToolkit": "[2.20.2]"
+        },
+        "compile": {
+          "lib/net45/HelixToolkit.Wpf.dll": {}
+        },
+        "runtime": {
+          "lib/net45/HelixToolkit.Wpf.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Accord/3.8.0": {
+      "sha512": "7kJrB570dO5ELim+2KWQNozuvWO9/BuZfZspdFy36fcWPNF2CEccblLuILeUlI8QJYd2DlBy0bfK8BlCx/uayA==",
+      "type": "package",
+      "path": "accord/3.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "accord.3.8.0.nupkg.sha512",
+        "accord.nuspec",
+        "build/Accord.dll.config",
+        "build/Accord.targets",
+        "lib/net35-unity full v3.5/Accord.dll",
+        "lib/net35-unity full v3.5/Accord.xml",
+        "lib/net35-unity micro v3.5/Accord.dll",
+        "lib/net35-unity micro v3.5/Accord.xml",
+        "lib/net35-unity subset v3.5/Accord.dll",
+        "lib/net35-unity subset v3.5/Accord.xml",
+        "lib/net35-unity web v3.5/Accord.dll",
+        "lib/net35-unity web v3.5/Accord.xml",
+        "lib/net35/Accord.dll",
+        "lib/net35/Accord.xml",
+        "lib/net40/Accord.dll",
+        "lib/net40/Accord.xml",
+        "lib/net45/Accord.dll",
+        "lib/net45/Accord.xml",
+        "lib/net46/Accord.dll",
+        "lib/net46/Accord.xml",
+        "lib/net462/Accord.dll",
+        "lib/net462/Accord.xml",
+        "lib/netstandard1.4/Accord.dll",
+        "lib/netstandard1.4/Accord.xml",
+        "lib/netstandard2.0/Accord.dll",
+        "lib/netstandard2.0/Accord.xml"
+      ]
+    },
+    "Accord.Video/3.8.0": {
+      "sha512": "efsmrydC22ZEisWkukqAiCtv27qF0l5/9U1eCCTkbnc5EYYE6F2RSnsfWr8iTELXb3ZsLLGO+Sy+K0NXrHDv4A==",
+      "type": "package",
+      "path": "accord.video/3.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "accord.video.3.8.0.nupkg.sha512",
+        "accord.video.nuspec",
+        "lib/net35-unity full v3.5/Accord.Video.dll",
+        "lib/net35-unity full v3.5/Accord.Video.xml",
+        "lib/net35-unity micro v3.5/Accord.Video.dll",
+        "lib/net35-unity micro v3.5/Accord.Video.xml",
+        "lib/net35-unity subset v3.5/Accord.Video.dll",
+        "lib/net35-unity subset v3.5/Accord.Video.xml",
+        "lib/net35-unity web v3.5/Accord.Video.dll",
+        "lib/net35-unity web v3.5/Accord.Video.xml",
+        "lib/net35/Accord.Video.dll",
+        "lib/net35/Accord.Video.xml",
+        "lib/net40/Accord.Video.dll",
+        "lib/net40/Accord.Video.xml",
+        "lib/net45/Accord.Video.dll",
+        "lib/net45/Accord.Video.xml",
+        "lib/net46/Accord.Video.dll",
+        "lib/net46/Accord.Video.xml",
+        "lib/net462/Accord.Video.dll",
+        "lib/net462/Accord.Video.xml",
+        "lib/netstandard2.0/Accord.Video.dll",
+        "lib/netstandard2.0/Accord.Video.xml"
+      ]
+    },
+    "Accord.Video.FFMPEG/3.8.0": {
+      "sha512": "so18O2AdHnwGz8+yyUG7uVuBRqymqB0pVwDSTNCwG7Qq9SgnpvkZCTKMbRGGy9B1r3nbqSSHsQNeWP9k6LNWOw==",
+      "type": "package",
+      "path": "accord.video.ffmpeg/3.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "accord.video.ffmpeg.3.8.0.nupkg.sha512",
+        "accord.video.ffmpeg.nuspec",
+        "build/Accord.Video.FFMPEG.targets",
+        "build/FFMPEG-README.txt",
+        "build/avcodec-57.dll",
+        "build/avdevice-57.dll",
+        "build/avfilter-6.dll",
+        "build/avformat-57.dll",
+        "build/avutil-55.dll",
+        "build/postproc-54.dll",
+        "build/swresample-2.dll",
+        "build/swscale-4.dll",
+        "lib/net35/Accord.Video.FFMPEG.dll",
+        "lib/net35/Accord.Video.FFMPEG.xml",
+        "lib/net40/Accord.Video.FFMPEG.dll",
+        "lib/net40/Accord.Video.FFMPEG.xml",
+        "lib/net45/Accord.Video.FFMPEG.dll",
+        "lib/net45/Accord.Video.FFMPEG.xml",
+        "lib/net46/Accord.Video.FFMPEG.dll",
+        "lib/net46/Accord.Video.FFMPEG.xml",
+        "lib/net462/Accord.Video.FFMPEG.dll",
+        "lib/net462/Accord.Video.FFMPEG.xml"
+      ]
+    },
+    "FontAwesome.WPF/4.7.0.9": {
+      "sha512": "SXE080rnyWMm9Dt0BZzMxh89/o9teuSaqL1N+0O/XM/F/HU8JuZA4XaEKxjBigwZPHHU3/udTa0QMYCHkmH43Q==",
+      "type": "package",
+      "path": "fontawesome.wpf/4.7.0.9",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fontawesome.wpf.4.7.0.9.nupkg.sha512",
+        "fontawesome.wpf.nuspec",
+        "lib/net35/FontAwesome.WPF.dll",
+        "lib/net35/FontAwesome.WPF.xml",
+        "lib/net40/FontAwesome.WPF.dll",
+        "lib/net40/FontAwesome.WPF.xml",
+        "lib/uap10.0/FontAwesome.UWP.XML",
+        "lib/uap10.0/FontAwesome.UWP.dll",
+        "lib/uap10.0/FontAwesome.UWP.pri",
+        "lib/uap10.0/FontAwesome.UWP/FontAwesome.otf",
+        "lib/wp81/FontAwesome.WIN81.dll",
+        "lib/wp81/FontAwesome.WIN81.xml",
+        "tools/install.ps1"
+      ]
+    },
+    "HelixToolkit/2.20.2": {
+      "sha512": "KQlQp7R1ozWqK3l4jvJ/zMTjD82P3EWaXGO+46HmU4DLAoFohaRrEx6SLcblautsdxhZcrvwOU91estZAhnY9g==",
+      "type": "package",
+      "path": "helixtoolkit/2.20.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "AUTHORS",
+        "CONTRIBUTORS",
+        "LICENSE",
+        "README.md",
+        "helixtoolkit.2.20.2.nupkg.sha512",
+        "helixtoolkit.nuspec",
+        "helixtoolkit.png",
+        "lib/netstandard1.1/HelixToolkit.dll",
+        "lib/netstandard1.1/HelixToolkit.xml"
+      ]
+    },
+    "HelixToolkit.Wpf/2.20.2": {
+      "sha512": "aO/bnFV+tPb1FRiQCs2VY4hVxUvfN7y7XWtv/o+EB/XI8zq7xLnB7Q1txfjHPMuPOV8w0BrCgLef1k/YPihdTQ==",
+      "type": "package",
+      "path": "helixtoolkit.wpf/2.20.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "AUTHORS",
+        "CONTRIBUTORS",
+        "LICENSE",
+        "README.md",
+        "helixtoolkit.png",
+        "helixtoolkit.wpf.2.20.2.nupkg.sha512",
+        "helixtoolkit.wpf.nuspec",
+        "lib/net45/HelixToolkit.Wpf.XML",
+        "lib/net45/HelixToolkit.Wpf.dll"
+      ]
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": [
+      "Accord.Video.FFMPEG >= 3.8.0",
+      "FontAwesome.WPF >= 4.7.0.9",
+      "HelixToolkit.Wpf >= 2.20.2",
+      "Newtonsoft.Json >= 13.0.1"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\пк\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Catalog\\Projects\\StereoStructure\\StereoStructure.csproj",
+      "projectName": "StereoStructure",
+      "projectPath": "D:\\Catalog\\Projects\\StereoStructure\\StereoStructure.csproj",
+      "packagesPath": "C:\\Users\\пк\\.nuget\\packages\\",
+      "outputPath": "D:\\Catalog\\Projects\\StereoStructure\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "C:\\Users\\пк\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net472": {
+        "dependencies": {
+          "Accord.Video.FFMPEG": {
+            "target": "Package",
+            "version": "[3.8.0, )"
+          },
+          "FontAwesome.WPF": {
+            "target": "Package",
+            "version": "[4.7.0.9, )"
+          },
+          "HelixToolkit.Wpf": {
+            "target": "Package",
+            "version": "[2.20.2, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

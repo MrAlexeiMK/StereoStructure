@@ -1,0 +1,77 @@
+﻿<Window x:Class="StereoStructure.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:HelixToolkit="clr-namespace:HelixToolkit.Wpf;assembly=HelixToolkit.Wpf"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:local="clr-namespace:StereoStructure"
+        mc:Ignorable="d"
+        Title="StereoStructure" Height="680.958" Width="1029.265" ResizeMode="CanMinimize" Closed="Window_Closed" Icon="icons/icon.png">
+    <Grid>
+        <Menu HorizontalAlignment="Center" Height="20" VerticalAlignment="Top" BorderBrush="#FF605E5E" BorderThickness="0,1">
+            <!-- Model -->
+            <MenuItem Height="20" Cursor="Hand" Background="White" BorderBrush="#FF151414" BorderThickness="1,0">
+                <MenuItem.Header>
+                    <TextBlock Name="Model" Text="Model" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF212121"/>
+                </MenuItem.Header>
+                <MenuItem Click="select_Click" Height="20" Cursor="Hand">
+                    <MenuItem.Header>
+                        <TextBlock Name="SelectFile" Text="Open" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF212121"/>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Click="scan_Click" Cursor="Hand" Height="20">
+                    <MenuItem.Header>
+                        <TextBlock Name="ScanVideo" Text="Create from video" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem x:Name="saveAsButton" Cursor="Hand" Header="Save as..." Click="saveAsButton_Click" IsEnabled="False"/>
+            </MenuItem>
+            <!-- Settings -->
+            <MenuItem Cursor="Hand" Background="White" Height="20" BorderBrush="#FF151414" BorderThickness="1,0">
+                <MenuItem.Header>
+                    <TextBlock Name="Settings" Text="Settings" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </MenuItem.Header>
+                <MenuItem Name="LogsItem" Header="Logs" IsChecked="True" Click="LogsMenuItem_Click" Cursor="Hand"/>
+                <MenuItem Name="CorItem" Header="Correspondences" IsChecked="True" Cursor="Hand" Click="CorItem_Click"/>
+                <MenuItem Name="EditItem" IsEnabled="False" Header="Edit mode" Cursor="Hand" Click="EditItem_Click" InputGestureText="E"/>
+                <MenuItem Name="AccuracyItem" Header="Accuracy" Cursor="Hand">
+                    <MenuItem x:Name="LowAccuracy" Cursor="Hand" Header="Low" IsChecked="true" Click="LowAccuracy_Click"/>
+                    <MenuItem x:Name="MediumAccuracy" Cursor="Hand" Header="Medium" Click="MediumAccuracy_Click"/>
+                    <MenuItem x:Name="HighAccuracy" Cursor="Hand" Header="High" Click="HighAccuracy_Click"/>
+                </MenuItem>
+                <MenuItem Name="LangItem" Header="Language" Cursor="Hand">
+                    <MenuItem x:Name="RU" Cursor="Hand" Header="Russian" Click="RU_Click"/>
+                    <MenuItem x:Name="EN" Cursor="Hand" Header="English" Click="EN_Click"/>
+                </MenuItem>
+                <MenuItem Name="AdvancedItem" Header="Advanced..." Cursor="Hand" Click="AdvancedItem_Click"/>
+            </MenuItem>
+            <!-- About -->
+            <MenuItem Cursor="Hand" Background="White" Height="20" BorderBrush="#FF151414" BorderThickness="1,0">
+                <MenuItem.Header>
+                    <TextBlock Name="About" Text="About" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </MenuItem.Header>
+                <MenuItem Name="Author" Header="Author" Cursor="Hand" Click="author_Click" Margin="0,0,22.8,0"/>
+                <MenuItem Name="FAQ" Header="How to use" Cursor="Hand" Click="faq_Click"/>
+            </MenuItem>
+        </Menu>
+        <HelixToolkit:HelixViewport3D Name="scene" ZoomExtentsWhenLoaded="True" Margin="0,22,0.2,0.2" MouseDown="scene_MouseDown" MouseWheel="scene_MouseWheel" KeyDown="scene_KeyDown">
+            <HelixToolkit:DefaultLights/>
+            <ModelVisual3D x:Name="model3d">
+                <ModelVisual3D.Content>
+                    <GeometryModel3D>
+                        <GeometryModel3D.Material>
+                            <DiffuseMaterial x:Name="matDiffuseMain">
+                                <DiffuseMaterial.Brush>
+                                    <SolidColorBrush Color="Gray"/>
+                                </DiffuseMaterial.Brush>
+                            </DiffuseMaterial>
+                        </GeometryModel3D.Material>
+                    </GeometryModel3D>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+            <HelixToolkit:GridLinesVisual3D x:Name="Grid" Width="500" Length="500" MinorDistance="20" MajorDistance="1" Thickness="0.3"/>
+        </HelixToolkit:HelixViewport3D>
+        <fa:ImageAwesome x:Name="wait" Icon="Refresh" Spin="True" Opacity="0" Margin="0,10,10,0" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" />
+    </Grid>
+</Window>

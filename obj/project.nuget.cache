@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "D9iQFf9v4Hz2xrKBnJORdVVGksGVtk0+t3M4YSPSbH1ylNPVv952t4ZFCVksMuVPRabIlM3+xMzoodgLWFhqLg==",
+  "success": true,
+  "projectFilePath": "D:\\Catalog\\Projects\\StereoStructure\\StereoStructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\пк\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
+    "C:\\Users\\пк\\.nuget\\packages\\accord.video\\3.8.0\\accord.video.3.8.0.nupkg.sha512",
+    "C:\\Users\\пк\\.nuget\\packages\\accord.video.ffmpeg\\3.8.0\\accord.video.ffmpeg.3.8.0.nupkg.sha512",
+    "C:\\Users\\пк\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
+    "C:\\Users\\пк\\.nuget\\packages\\helixtoolkit\\2.20.2\\helixtoolkit.2.20.2.nupkg.sha512",
+    "C:\\Users\\пк\\.nuget\\packages\\helixtoolkit.wpf\\2.20.2\\helixtoolkit.wpf.2.20.2.nupkg.sha512",
+    "C:\\Users\\пк\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
