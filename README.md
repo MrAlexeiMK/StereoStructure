@@ -3,6 +3,7 @@
    
 <b><a href="https://github.com/MrAlexeiMK/StereoStructure/raw/main/StereoStructure.msi">DOWNLOAD</b></a>  
   
+  
 <b>DEMONSTRATIONS:</b>
   
 [![Demonstration](https://img.youtube.com/vi/4aomYTqI5K8/0.jpg)](https://www.youtube.com/watch?v=4aomYTqI5K8)  
