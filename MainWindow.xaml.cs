@@ -54,7 +54,7 @@ namespace StereoStructure
             SelectFile.Text = Lang.GUI_SELECT_FILE;
             Model.Text = Lang.GUI_MODEL;
             ScanVideo.Text = Lang.GUI_SCAN_VIDEO;
-            Settings.Text = Lang.GUI_SETTINGS;
+            SettingsTextBlock.Text = Lang.GUI_SETTINGS;
             About.Text = Lang.GUI_ABOUT;
             saveAsButton.Header = Lang.GUI_SAVE_AS;
             LogsItem.Header = Lang.GUI_LOGS;
@@ -148,9 +148,7 @@ namespace StereoStructure
             }
             Dispatcher.Invoke(() =>
             {
-                EditItem.IsEnabled = true;
-                wait.Opacity = 0;
-                scene.Cursor = null;
+                AfterLoad();
             });
         }
 
@@ -169,12 +167,19 @@ namespace StereoStructure
                 }
                 Correspondences.Clear();
                 Logs.WriteMainThread("Starting proccessing...");
+                int count = (int)Math.Ceiling((double)reader.FrameCount / (SettingsListener.Get().skipFrames + 1));
+                if (count < 10) throw new Exception("You need at least 10 frames in video file");
+                int j = 0;
                 for (int i = 0; i < reader.FrameCount; ++i)
                 {
                     Bitmap frame = reader.ReadVideoFrame();
-                    Correspondences.Add(ref frame);
-                    frame.Save(SettingsListener.GetPath() + "frames\\frame_" + i + ".jpg");
-                    Logs.ReplaceMainThread("Proccessed frames: " + i + "/" + reader.FrameCount);
+                    if (i % (SettingsListener.Get().skipFrames + 1) == 0)
+                    {
+                        Correspondences.Add(ref frame);
+                        frame.Save(SettingsListener.GetPath() + "frames\\frame_" + j + ".jpg");
+                        Logs.ReplaceMainThread("Proccessed frames: " + (j + 1) + "/" + count);
+                        ++j;
+                    }
                     frame.Dispose();
                 }
 
@@ -199,8 +204,7 @@ namespace StereoStructure
             Logs.WriteMainThread("Video File was processed");
             Dispatcher.Invoke(() =>
             {
-                wait.Opacity = 0;
-                scene.Cursor = null;
+                AfterLoad();
             });
         }
 
@@ -295,14 +299,33 @@ namespace StereoStructure
             AdvancedListener.Show(this);
         }
 
+        private void AfterLoad()
+        {
+            wait.Opacity = 0;
+            scene.Cursor = null;
+            SettingsButton.IsEnabled = true;
+            SettingsTextBlock.Foreground = System.Windows.Media.Brushes.Black;
+        }
+
+        private void PreLoad()
+        {
+            wait.Opacity = 1;
+            SettingsButton.IsEnabled = false;
+            SettingsTextBlock.Foreground = System.Windows.Media.Brushes.Gray;
+            scene.Cursor = System.Windows.Input.Cursors.Wait;
+            if (AdvancedListener.IsOpened())
+            {
+                AdvancedListener.Close();
+            }
+        }
+
         private void select_Click(object sender, RoutedEventArgs e)
         {
             if (modelFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 AbortThreads();
                 Logs.Write("3D Model was selected: " + modelFileDialog.FileName);
-                wait.Opacity = 1;
-                scene.Cursor = System.Windows.Input.Cursors.Wait;
+                PreLoad();
                 modelThread = new Thread(() => LoadModel(modelFileDialog.FileName));
                 modelThread.Start();
             }
@@ -315,8 +338,7 @@ namespace StereoStructure
                 AbortThreads();
                 if (Correspondences.IsOpened()) Correspondences.Close();
                 Logs.Write("Video File was selected: " + videoFileDialog.FileName);
-                wait.Opacity = 1;
-                scene.Cursor = System.Windows.Input.Cursors.Wait;
+                PreLoad();
                 videoThread = new Thread(() => Scan(videoFileDialog.FileName));
                 videoThread.Start();
             }

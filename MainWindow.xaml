@@ -28,9 +28,9 @@
                 <MenuItem x:Name="saveAsButton" Cursor="Hand" Header="Save as..." Click="saveAsButton_Click" IsEnabled="False"/>
             </MenuItem>
             <!-- Settings -->
-            <MenuItem Cursor="Hand" Background="White" Height="20" BorderBrush="#FF151414" BorderThickness="1,0">
+            <MenuItem Cursor="Hand" x:Name="SettingsButton" Background="White" Height="20" BorderBrush="#FF151414" BorderThickness="1,0">
                 <MenuItem.Header>
-                    <TextBlock Name="Settings" Text="Settings" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Name="SettingsTextBlock" Text="Settings" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 </MenuItem.Header>
                 <MenuItem Name="LogsItem" Header="Logs" IsChecked="True" Click="LogsMenuItem_Click" Cursor="Hand"/>
                 <MenuItem Name="CorItem" Header="Correspondences" IsChecked="True" Cursor="Hand" Click="CorItem_Click"/>

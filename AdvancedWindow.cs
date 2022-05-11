@@ -21,8 +21,12 @@ namespace StereoStructure
             t4.Text = SettingsListener.Get().defaultColor.ToString();
             t5.Text = SettingsListener.Get().maxWidth.ToString();
             t6.Text = SettingsListener.Get().circleWidth.ToString();
-            t7.Text = SettingsListener.Get().eps.ToString();
-            t8.Text = SettingsListener.Get().gaussSigma.ToString();
+            t7.Text = SettingsListener.Get().skipFrames.ToString();
+            t8.Items.Add(Lang.GUI_ROTATE_NONE);
+            t8.Items.Add(Lang.GUI_ROTATE_90);
+            t8.Items.Add(Lang.GUI_ROTATE_180);
+            t8.Items.Add(Lang.GUI_ROTATE_270);
+            t8.SelectedIndex = (int)SettingsListener.Get().rotationImages;
 
             Text = Lang.GUI_SETTINGS;
             l1.Text = Lang.GUI_GRID_WIDTH;
@@ -31,8 +35,8 @@ namespace StereoStructure
             l4.Text = Lang.GUI_DEFAULT_COLOR;
             l5.Text = Lang.GUI_MAX_MODEL_WIDTH;
             l6.Text = Lang.GUI_CORRESPONDENCES_CIRCLE_WIDTH;
-            l7.Text = Lang.GUI_EPSILON;
-            l8.Text = Lang.GUI_GAUSS_BLUR_SIGMA;
+            l7.Text = Lang.GUI_SKIP_FRAMES_COUNT;
+            l8.Text = Lang.GUI_ROTATE;
         }
 
         private void AdvancedWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -143,38 +147,18 @@ namespace StereoStructure
         {
             if (t7.Text.Length > 0)
             {
-                try
-                {
-                    double val = Double.Parse(t7.Text);
-                    if (val < 1)
-                    {
-                        SettingsListener.Get().eps = val;
-                    }
-                } catch { }
+                SettingsListener.Get().skipFrames = Int32.Parse(t7.Text);
             }
         }
 
         private void t7_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) 
-                && !(e.KeyChar == '.' && !t7.Text.Contains(".") && t7.Text.Length > 0);
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void t8_TextChanged(object sender, EventArgs e)
+        private void t8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (t8.Text.Length > 0)
-            {
-                try
-                {
-                    SettingsListener.Get().gaussSigma = Double.Parse(t8.Text);
-                } catch { }
-            }
-        }
-
-        private void t8_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) 
-                && !(e.KeyChar == '.' && !t8.Text.Contains(".") && t8.Text.Length > 0);
+            SettingsListener.Get().rotationImages = (Rotation)t8.SelectedIndex;
         }
     }
 }

@@ -88,6 +88,7 @@
       <DependentUpon>CorrespondencesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="math\Correspondences.cs" />
+    <Compile Include="math\MatrixExtractor.cs" />
     <Compile Include="singletons\AdvancedListener.cs" />
     <Compile Include="singletons\JSON.cs" />
     <Compile Include="singletons\Lang.cs" />

@@ -31,8 +31,12 @@ namespace StereoStructure
         public static string GUI_DEFAULT_COLOR = "Default color";
         public static string GUI_MAX_MODEL_WIDTH = "Maximum model width";
         public static string GUI_CORRESPONDENCES_CIRCLE_WIDTH = "Correspondences circle width";
-        public static string GUI_EPSILON = "Epsilon";
-        public static string GUI_GAUSS_BLUR_SIGMA = "Gauss-Blur sigma value";
+        public static string GUI_SKIP_FRAMES_COUNT = "Skip frames count";
+        public static string GUI_ROTATE = "Rotate images in video";
+        public static string GUI_ROTATE_NONE = "None";
+        public static string GUI_ROTATE_90 = "Rotate 90°";
+        public static string GUI_ROTATE_180 = "Rotate 180°";
+        public static string GUI_ROTATE_270 = "Rotate 270°";
 
         public static void Load()
         {
@@ -70,8 +74,12 @@ namespace StereoStructure
                     GUI_DEFAULT_COLOR = lines[23];
                     GUI_MAX_MODEL_WIDTH = lines[24];
                     GUI_CORRESPONDENCES_CIRCLE_WIDTH = lines[25];
-                    GUI_EPSILON = lines[26];
-                    GUI_GAUSS_BLUR_SIGMA = lines[27];
+                    GUI_SKIP_FRAMES_COUNT = lines[26];
+                    GUI_ROTATE = lines[27];
+                    GUI_ROTATE_NONE = lines[28];
+                    GUI_ROTATE_90 = lines[29];
+                    GUI_ROTATE_180 = lines[30];
+                    GUI_ROTATE_270 = lines[31];
                 } catch(Exception ex)
                 {
                     Logs.Write(ex.Message+ex.StackTrace, LogType.ERROR);

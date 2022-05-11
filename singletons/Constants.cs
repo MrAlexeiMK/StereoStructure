@@ -102,6 +102,13 @@ namespace StereoStructure
         MEDIUM,
         HIGH
     }
+    public enum Rotation
+    {
+        NONE = 0,
+        ROTATION_90 = 1,
+        ROTATION_180 = 2,
+        ROTATION_270 = 3
+    }
     public enum OperatorType
     {
         ROTATION_2D,
@@ -110,13 +117,16 @@ namespace StereoStructure
         ROTATION_3D_Z,
         GAUSS_2D,
         GAUSS_1D_X,
-        GAUSS_1D_Y
+        GAUSS_1D_Y,
+        SOBEL_X,
+        SOBEL_Y
     }
     public enum ColorType
     {
-        R,
-        G,
-        B
+        RED,
+        GREEN,
+        BLUE,
+        GRAY
     }
     public enum PaddingFill
     {

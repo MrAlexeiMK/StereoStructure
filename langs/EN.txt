@@ -24,5 +24,9 @@ Grid Thickness
 Default model color on first load
 Maximum model width
 Correspondences circle width
-Epsilon
-Gauss-Blur sigma value
+Skip frames count
+Rotate images in video
+None
+Rotate 90°
+Rotate 180°
+Rotate 270°
