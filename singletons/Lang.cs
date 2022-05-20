@@ -37,6 +37,26 @@ namespace StereoStructure
         public static string GUI_ROTATE_90 = "Rotate 90°";
         public static string GUI_ROTATE_180 = "Rotate 180°";
         public static string GUI_ROTATE_270 = "Rotate 270°";
+        public static string GUI_SIFT_SIGMA_MIN = "SIFT sigma minimum value";
+        public static string GUI_SIFT_SIGMA_MAX = "SIFT sigma maximum value";
+        public static string GUI_SIFT_SIGMA_STEP = "SIFT sigma step";
+        public static string GUI_SIFT_SCALES_COUNT = "SIFT scales count";
+        public static string GUI_SIFT_MEDIAN_FILTER = "SIFT apply Median filter on image to remove noises";
+        public static string GUI_SIFT_MEDIAN_FILTER_SIZE = "SIFT median filter size";
+        public static string GUI_SIFT_HESSIAN_OPERATOR = "SIFT apply Hessian operator to clarification points";
+        public static string GUI_SIFT_HESSIAN_R = "SIFT Hessian 'r' value";
+        public static string GUI_SIFT_FRAME_STEP = "How many 'right' images shoud we choose for every 'left' image";
+        public static string GUI_SIFT_BORDERS_OPERATOR = "Which borders operator use";
+        public static string GUI_SIFT_IMAGE_WIDTH = "Image width to resize";
+        public static string GUI_SIFT_SOBEL = "Sobel Operator";
+        public static string GUI_SIFT_SHAR = "Shar Operator";
+        public static string GUI_KEYPOINTS_ALG = "Key Points alghoritm to use";
+        public static string GUI_KEYPOINTS_ALG_ORB = "ORB";
+        public static string GUI_KEYPOINTS_ALG_SIFT = "SIFT";
+        public static string GUI_KEYPOINTS_ALG_FAST = "FAST";
+        public static string GUI_FAST_RADIUS = "FAST Radius";
+        public static string GUI_FAST_T_VALUE = "FAST 't' value";
+        public static string GUI_FAST_N_VALUE = "FAST 'N' value";
 
         public static void Load()
         {
@@ -80,6 +100,26 @@ namespace StereoStructure
                     GUI_ROTATE_90 = lines[29];
                     GUI_ROTATE_180 = lines[30];
                     GUI_ROTATE_270 = lines[31];
+                    GUI_SIFT_SIGMA_MIN = lines[32];
+                    GUI_SIFT_SIGMA_MAX = lines[33];
+                    GUI_SIFT_SIGMA_STEP = lines[34];
+                    GUI_SIFT_SCALES_COUNT = lines[35];
+                    GUI_SIFT_MEDIAN_FILTER = lines[36];
+                    GUI_SIFT_MEDIAN_FILTER_SIZE = lines[37];
+                    GUI_SIFT_HESSIAN_OPERATOR = lines[38];
+                    GUI_SIFT_HESSIAN_R = lines[39];
+                    GUI_SIFT_FRAME_STEP = lines[40];
+                    GUI_SIFT_BORDERS_OPERATOR = lines[41];
+                    GUI_SIFT_IMAGE_WIDTH = lines[42];
+                    GUI_SIFT_SOBEL = lines[43];
+                    GUI_SIFT_SHAR = lines[44];
+                    GUI_KEYPOINTS_ALG = lines[45];
+                    GUI_KEYPOINTS_ALG_ORB = lines[46];
+                    GUI_KEYPOINTS_ALG_SIFT = lines[47];
+                    GUI_KEYPOINTS_ALG_FAST = lines[48];
+                    GUI_FAST_RADIUS = lines[49];
+                    GUI_FAST_T_VALUE = lines[50];
+                    GUI_FAST_N_VALUE = lines[51];
                 } catch(Exception ex)
                 {
                     Logs.Write(ex.Message+ex.StackTrace, LogType.ERROR);

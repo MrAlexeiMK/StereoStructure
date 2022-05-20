@@ -43,11 +43,11 @@ namespace StereoStructure
         {
             Point3D center = new Point3D(0, 0, 0);
             double yMin = Double.MaxValue;
-            for(int i = 0; i < nodes.Count; ++i)
+            for (int i = 0; i < nodes.Count; ++i)
             {
                 Point3D point = nodes[i];
                 Matrix v = new Matrix(point);
-                v = A.Multiply(v);
+                v = MatrixExtractor.GetMultiply(A, v);
                 point.x = v.Get(0); point.y = v.Get(1); point.z = v.Get(2);
                 yMin = Math.Min(yMin, point.y);
                 center.Sum(point);
@@ -100,7 +100,7 @@ namespace StereoStructure
                     writer.WriteLine("mtllib " + colorsFile);
                     foreach(Point3D point in nodes)
                     {
-                        writer.WriteLine("v "+point.x + " " + point.z + " " + point.y);
+                        writer.WriteLine("v " + point.x + " " + point.z + " " + point.y);
                     }
                     int colorKey = 0;
                     int lastIndex = 0;
@@ -231,15 +231,18 @@ namespace StereoStructure
                         if (p.y > maxWidth) maxWidth = p.y;
                         if (p.z > maxWidth) maxWidth = p.z;
                     }
-                    double K = SettingsListener.Get().maxWidth / maxWidth;
-                    ApplyMultiple(K, K, K);
-                    Logs.WriteMainThread("Model was scaled by " + K);
+                    if (maxWidth > 0)
+                    {
+                        double K = SettingsListener.Get().maxWidth / maxWidth;
+                        ApplyMultiple(K, K, K);
+                        Logs.WriteMainThread("Model was scaled by " + K);
 
-                    //Shift points above axis y = 0
-                    yMin -= center.y;
-                    yMin *= K;
-                    ApplySum(0, -yMin, 0);
-                    Logs.WriteMainThread("Model was raised on " + (-yMin));
+                        //Shift points above axis y = 0
+                        yMin -= center.y;
+                        yMin *= K;
+                        ApplySum(0, -yMin, 0);
+                        Logs.WriteMainThread("Model was raised on " + (-yMin));
+                    }
                 }
                 else throw new Exception("Not .obj file");
 

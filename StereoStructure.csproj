@@ -87,6 +87,12 @@
     <Compile Include="CorrespondencesWindow.xaml.cs">
       <DependentUpon>CorrespondencesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="descriptors\BRIEF.cs" />
+    <Compile Include="descriptors\Descriptor.cs" />
+    <Compile Include="keypoints\FAST.cs" />
+    <Compile Include="keypoints\KeyPoints.cs" />
+    <Compile Include="keypoints\ORB.cs" />
+    <Compile Include="keypoints\SIFT.cs" />
     <Compile Include="math\Correspondences.cs" />
     <Compile Include="math\MatrixExtractor.cs" />
     <Compile Include="singletons\AdvancedListener.cs" />

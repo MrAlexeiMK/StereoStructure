@@ -95,10 +95,10 @@ namespace StereoStructure
             {
                 for (int j = 0; j < M; ++j)
                 {
-                    int pixel = 0;
+                    double pixel = 0;
                     if(color == ColorType.GRAY)
                     {
-                        pixel = (int)(frame.GetPixel(j, i).R*0.299 + frame.GetPixel(j, i).G*0.587 + frame.GetPixel(j, i).B*0.114);
+                        pixel = (frame.GetPixel(j, i).R*0.299 + frame.GetPixel(j, i).G*0.587 + frame.GetPixel(j, i).B*0.114);
                     }
                     else if (color == ColorType.RED) pixel = frame.GetPixel(j, i).R;
                     else if (color == ColorType.GREEN) pixel = frame.GetPixel(j, i).G;
@@ -479,6 +479,18 @@ namespace StereoStructure
             Assign(res);
         }
 
+        public void Resize(int width, int height)
+        {
+            Matrix res = MatrixExtractor.GetResized(this, width, height);
+            Assign(res);
+        }
+
+        public void Resize(int width)
+        {
+            Matrix res = MatrixExtractor.GetResized(this, width);
+            Assign(res);
+        }
+
         public void ConvertByMedianFilter(int K)
         {
             Matrix res = MatrixExtractor.GetMedianFiltered(this, K);
@@ -554,6 +566,16 @@ namespace StereoStructure
             return res;
         }
 
+        public double GetTrace()
+        {
+            double res = 0;
+            for(int i = 0; i < Math.Min(N, M); ++i)
+            {
+                res += data[i, i];
+            }
+            return res;
+        }
+
         public Matrix GetNegative()
         {
             Matrix res = new Matrix(N, M);
@@ -591,50 +613,16 @@ namespace StereoStructure
 
         public Matrix Multiply(double val)
         {
-            Matrix res = new Matrix(N, M);
-            for (int i = 0; i < N; ++i)
-            {
-                for (int j = 0; j < M; ++j)
-                {
-                    res.Set(i, j, Get(i, j) * val);
-                }
-            }
+            Matrix res = MatrixExtractor.GetMultiply(this, val);
             Assign(res);
             return this;
         }
 
         public Matrix Multiply(Matrix m)
         {
-            if (M == m.N)
-            {
-                Matrix res = new Matrix(N, m.M);
-                for (int i = 0; i < N; ++i)
-                {
-                    for (int j = 0; j < m.M; ++j)
-                    {
-                        for (int k = 0; k < M; ++k)
-                        {
-                            res.Set(i, j, res.Get(i, j) + data[i, k] * m.data[k, j]);
-                        }
-                    }
-                }
-                Assign(res);
-                return this;
-            }
-            else if (N == m.N && M == m.M)
-            {
-                Matrix res = new Matrix(N, M);
-                for (int i = 0; i < N; ++i)
-                {
-                    for (int j = 0; j < M; ++j)
-                    {
-                        res.data[i, j] = data[i, j] * m.data[i, j];
-                    }
-                }
-                Assign(res);
-                return this;
-            }
-            return null;
+            Matrix res = MatrixExtractor.GetMultiply(this, m);
+            Assign(res);
+            return this;
         }
 
         public Matrix Minus(double val)

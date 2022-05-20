@@ -19,7 +19,8 @@ namespace StereoStructure
                 for (int x = 0; x < M; ++x)
                 {
                     string cell = spl2[x];
-                    res.data[y, x] = DoubleFromCell(cell, mask);
+                    double val = DoubleFromCell(cell, mask);
+                    res.data[y, x] = Math.Abs(val) < Constants.eps ? 0 : val;
                 }
             }
             return res;
@@ -97,49 +98,46 @@ namespace StereoStructure
 
         public static Matrix GetConvertByKernel(Matrix A, Matrix K, int paddingSizeX, int paddingSizeY, PaddingFill paddingFill, int stridingSizeX = 1, int stridingSizeY = 1)
         {
-            if (K.N <= A.N && K.M <= A.M)
+            if(K.N > A.N || K.M > A.M) throw new Exception("K.N > N or K.M > M");
+            Matrix res = new Matrix(
+                (A.N - K.N + 2 * paddingSizeY) / stridingSizeY + 1,
+                (A.M - K.M + 2 * paddingSizeX) / stridingSizeX + 1
+            );
+            for (int y = 0; y < res.N; ++y)
             {
-                Matrix res = new Matrix(
-                    (A.N - K.N + 2 * paddingSizeY) / stridingSizeY + 1,
-                    (A.M - K.M + 2 * paddingSizeX) / stridingSizeX + 1
-                );
-                for (int y = 0; y < res.N; ++y)
+                for (int x = 0; x < res.M; ++x)
                 {
-                    for (int x = 0; x < res.M; ++x)
+                    double val = 0;
+                    double sum = 0;
+                    List<Pair<int, int>> paddingZones = new List<Pair<int, int>>();
+                    for (int x1 = x * stridingSizeX - paddingSizeX;
+                        x1 < x * stridingSizeX - paddingSizeX + K.M; ++x1)
                     {
-                        double val = 0;
-                        double sum = 0;
-                        List<Pair<int, int>> paddingZones = new List<Pair<int, int>>();
-                        for (int x1 = x * stridingSizeX - paddingSizeX;
-                            x1 < x * stridingSizeX - paddingSizeX + K.M; ++x1)
+                        for (int y1 = y * stridingSizeY - paddingSizeY;
+                            y1 < y * stridingSizeY - paddingSizeY + K.N; ++y1)
                         {
-                            for (int y1 = y * stridingSizeY - paddingSizeY;
-                                y1 < y * stridingSizeY - paddingSizeY + K.N; ++y1)
+                            if (x1 >= 0 && x1 < A.M && y1 >= 0 && y1 < A.N)
                             {
-                                if (x1 >= 0 && x1 < A.M && y1 >= 0 && y1 < A.N)
-                                {
-                                    val += A.Get(y1, x1) * K.Get(y1 - y * stridingSizeY + paddingSizeY,
-                                        x1 - x * stridingSizeX + paddingSizeX);
-                                    sum += A.Get(y1, x1);
-                                }
-                                else
-                                {
-                                    if (paddingFill == PaddingFill.BY_MEDIAN) paddingZones.Add(new Pair<int, int>(x1, y1));
-                                }
+                                val += A.Get(y1, x1) * K.Get(y1 - y * stridingSizeY + paddingSizeY,
+                                    x1 - x * stridingSizeX + paddingSizeX);
+                                sum += A.Get(y1, x1);
+                            }
+                            else
+                            {
+                                if (paddingFill == PaddingFill.BY_MEDIAN) paddingZones.Add(new Pair<int, int>(x1, y1));
                             }
                         }
-                        sum /= (K.N * K.M - paddingZones.Count);
-                        foreach (Pair<int, int> p in paddingZones)
-                        {
-                            val += sum * K.Get(p.second - y * stridingSizeY + paddingSizeY,
-                                        p.first - x * stridingSizeX + paddingSizeX);
-                        }
-                        res.Set(y, x, val);
                     }
+                    sum /= (K.N * K.M - paddingZones.Count);
+                    foreach (Pair<int, int> p in paddingZones)
+                    {
+                        val += sum * K.Get(p.second - y * stridingSizeY + paddingSizeY,
+                                    p.first - x * stridingSizeX + paddingSizeX);
+                    }
+                    res.Set(y, x, val);
                 }
-                return res;
             }
-            else throw new Exception("K.N > N or K.M > M");
+            return res;
         }
 
         public static Matrix GetConvertByKernel(Matrix A, Matrix K, PaddingFill paddingFill)
@@ -155,11 +153,48 @@ namespace StereoStructure
 
         public static Matrix GetScale(Matrix A, double scale)
         {
-            if (scale <= 0 || scale > 1) throw new Exception("Scale should be on (0; 1)");
+            if (scale <= 0) throw new Exception("Scale should be > 0, your scale is "+scale);
             if (scale == 1) return A;
-            int size = (int)(1 / scale);
-            Matrix K = new Matrix(size, size, 1.0 / (size * size));
-            return GetConvertByKernel(A, K, 0, PaddingFill.BY_ZEROES, size);
+            if(scale < 1)
+            {
+                int size = (int)(1 / scale);
+                Matrix K = new Matrix(size, size, 1.0 / (size * size));
+                return GetConvertByKernel(A, K, 0, PaddingFill.BY_ZEROES, size);
+            }
+            else
+            {
+                int sizeX = (int)(A.M * scale);
+                int sizeY = (int)(A.N * scale);
+                Matrix res = new Matrix(sizeY, sizeX);
+                for(int y = 0; y < sizeY; ++y)
+                {
+                    for(int x = 0; x < sizeX; ++x)
+                    {
+                        res.data[y, x] = A.data[(int)(y/scale), (int)(x/scale)];
+                    }
+                }
+                return res;
+            }
+        }
+
+        public static Matrix GetResized(Matrix A, int width, int height)
+        {
+            Matrix res = new Matrix(height, width);
+            double scaleX = (double)A.M / width;
+            double scaleY = (double)A.N / height;
+            for (int y = 0; y < height; ++y)
+            {
+                for(int x = 0; x < width; ++x)
+                {
+                    res.data[y, x] = A.data[(int)(y*scaleY), (int)(x*scaleX)];
+                }
+            }
+            return res;
+        }
+
+        public static Matrix GetResized(Matrix A, int width)
+        {
+            return GetResized(A, width, (A.N * width) / A.M);
         }
 
         public static Matrix GetSubMatrix(Matrix A, int fromCol, int toCol)
@@ -255,7 +290,7 @@ namespace StereoStructure
 
         public static Matrix GetMedianFiltered(Matrix A, int K)
         {
-            if (K % 2 == 0) throw new Exception("K should be odd");
+            if (K % 2 == 0) ++K;
             Matrix res = new Matrix(A.N, A.M);
             Matrix I = GetPaddingLayersMatrix(A, K/2);
             for(int x = 0; x < A.M; ++x)
@@ -294,6 +329,51 @@ namespace StereoStructure
                 }
             }
             return res;
+        }
+
+        public static Matrix GetMultiply(Matrix A, double val)
+        {
+            Matrix res = new Matrix(A.N, A.M);
+            for (int i = 0; i < A.N; ++i)
+            {
+                for (int j = 0; j < A.M; ++j)
+                {
+                    res.Set(i, j, A.Get(i, j) * val);
+                }
+            }
+            return res;
+        }
+
+        public static Matrix GetMultiply(Matrix A, Matrix m)
+        {
+            if (A.M == m.N)
+            {
+                Matrix res = new Matrix(A.N, m.M);
+                for (int i = 0; i < A.N; ++i)
+                {
+                    for (int j = 0; j < m.M; ++j)
+                    {
+                        for (int k = 0; k < A.M; ++k)
+                        {
+                            res.Set(i, j, res.Get(i, j) + A.data[i, k] * m.data[k, j]);
+                        }
+                    }
+                }
+                return res;
+            }
+            else if (A.N == m.N && A.M == m.M)
+            {
+                Matrix res = new Matrix(A.N, A.M);
+                for (int i = 0; i < A.N; ++i)
+                {
+                    for (int j = 0; j < A.M; ++j)
+                    {
+                        res.data[i, j] = A.data[i, j] * m.data[i, j];
+                    }
+                }
+                return res;
+            }
+            return null;
         }
 
         public static Matrix GetMinus(Matrix A, Matrix B)
@@ -359,6 +439,10 @@ namespace StereoStructure
                     return new Matrix("1,0,-1|2,0,-2|1,0,-1");
                 case OperatorType.SOBEL_Y:
                     return new Matrix("1,2,1|0,0,0|-1,-2,-1");
+                case OperatorType.SHAR_X:
+                    return new Matrix("3,0,-3|10,0,-10|3,0,-3");
+                case OperatorType.SHAR_Y:
+                    return new Matrix("3,10,3|0,0,0|-3,-10,-3");
             }
 
             throw new Exception("Operator not found");

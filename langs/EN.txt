@@ -30,3 +30,23 @@ None
 Rotate 90°
 Rotate 180°
 Rotate 270°
+SIFT sigma minimum value
+SIFT sigma maximum value
+SIFT sigma step
+SIFT scales count
+SIFT apply Median filter on image to remove noises
+SIFT median filter size
+SIFT apply Hessian operator to clarification points
+SIFT Hessian 'r' value
+How many 'right' images shoud we choose for every 'left' image
+Which borders operator use
+Image width to resize
+Sobel Operator
+Shar Operator
+Key Points alghoritm to use
+ORB
+SIFT
+FAST
+FAST Radius
+FAST 't' value
+FAST 'N' value

@@ -119,7 +119,9 @@ namespace StereoStructure
         GAUSS_1D_X,
         GAUSS_1D_Y,
         SOBEL_X,
-        SOBEL_Y
+        SOBEL_Y,
+        SHAR_X,
+        SHAR_Y
     }
     public enum ColorType
     {
@@ -133,11 +135,21 @@ namespace StereoStructure
         BY_ZEROES,
         BY_MEDIAN
     }
-    enum LogType
+    public enum LogType
     {
         INFO,
         WARNING,
         ERROR
+    }
+    public enum CorrespondencesAlg
+    {
+        ORB = 0,
+        SIFT = 1,
+        FAST = 2
+    }
+    public enum DescriptorAlg
+    {
+        BRIEF = 0
     }
     static class Constants
     {
@@ -148,6 +160,8 @@ namespace StereoStructure
             OperatorType.ROTATION_3D_X,
             OperatorType.ROTATION_3D_Y
         };
+        public static double eps = 1e-10;
+        
         public static double Gauss(int x, int y, double k)
         {
             return 1.0 / (2 * Math.PI * k*k) * Math.Exp(-(x*x + y*y) / (2*k*k));

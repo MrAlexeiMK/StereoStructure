@@ -100,13 +100,12 @@ namespace StereoStructure
             try
             {
                 model.Save(path);
+                model3d.Content = objReader.Read(path);
             }
             catch (Exception ex)
             {
-                Logs.Write("Model save error: " + path, LogType.ERROR);
                 Logs.Write(ex.Message + ex.StackTrace, LogType.ERROR);
             }
-            model3d.Content = objReader.Read(path);
             Logs.Write("Model was saved");
         }
 
@@ -169,6 +168,7 @@ namespace StereoStructure
                 Logs.WriteMainThread("Starting proccessing...");
                 int count = (int)Math.Ceiling((double)reader.FrameCount / (SettingsListener.Get().skipFrames + 1));
                 if (count < 10) throw new Exception("You need at least 10 frames in video file");
+                Correspondences.Init(count);
                 int j = 0;
                 for (int i = 0; i < reader.FrameCount; ++i)
                 {
@@ -177,14 +177,13 @@ namespace StereoStructure
                     {
                         Correspondences.Add(ref frame);
                         frame.Save(SettingsListener.GetPath() + "frames\\frame_" + j + ".jpg");
-                        Logs.ReplaceMainThread("Proccessed frames: " + (j + 1) + "/" + count);
+                        Logs.WriteMainThread("PROCCESSED FRAMES: " + (j + 1) + "/" + count);
                         ++j;
                     }
                     frame.Dispose();
                 }
-
+                Correspondences.Compute();
                 Dispatcher.Invoke(() => {
-                    Correspondences.Init((int)reader.FrameCount);
                     if (SettingsListener.Get().correspondences)
                     {
                         Correspondences.Show();
@@ -326,6 +325,7 @@ namespace StereoStructure
                 AbortThreads();
                 Logs.Write("3D Model was selected: " + modelFileDialog.FileName);
                 PreLoad();
+                EditItem.IsEnabled = true;
                 modelThread = new Thread(() => LoadModel(modelFileDialog.FileName));
                 modelThread.Start();
             }
